@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "com.suihan74"
-version = "1.0-SNAPSHOT"
+version = "0.0.3"
 
 repositories {
     google()
