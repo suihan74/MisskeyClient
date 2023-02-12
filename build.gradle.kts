@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "com.suihan74"
-version = "0.0.3"
+version = "0.0.4"
 
 repositories {
     google()
@@ -51,4 +51,15 @@ tasks.test {
 
 tasks.withType<KotlinCompile> {
     kotlinOptions.jvmTarget = "1.8"
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("maven") {
+            groupId = "com.suihan74.misskey"
+            artifactId = "misskeyclient-kotlin"
+            version = "0.0.4"
+            from(components["kotlin"])
+        }
+    }
 }
