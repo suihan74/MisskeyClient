@@ -3,6 +3,7 @@ package com.suihan74.misskey
 import com.suihan74.misskey.entity.Visibility
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Test
+import kotlin.test.assertEquals
 
 internal class MisskeyTest : TestCredential() {
     private val instance = "misskey.io"
@@ -36,7 +37,8 @@ internal class MisskeyTest : TestCredential() {
                     instance = instance,
                     name = "すいはんのーと",
                     description = "@suihan74",
-                    permissions = listOf("write:notes")
+                    permissions = listOf("write:notes"),
+                    callbackUrl = "https://localhost/"
                 )
                 println("appSecret: ${appCredential.app.secret}")
 
@@ -49,6 +51,7 @@ internal class MisskeyTest : TestCredential() {
             }
         }.onFailure {
             it.printStackTrace()
+            throw it
         }
     }
 
@@ -57,10 +60,19 @@ internal class MisskeyTest : TestCredential() {
         runBlocking {
             val client = Misskey.Client(instance = instance, tokenDigest = testTokenDigest)
             val note = client.notes.create(
-                text = "テスト投稿",
+                text = "APIテスト投稿",
                 visibility = Visibility.Specified
             )
             println(note.text)
+        }
+    }
+
+    @Test
+    fun i() {
+        runBlocking {
+            val client = Misskey.Client(instance = instance, tokenDigest = testTokenDigest)
+            val account = client.account.i()
+            assertEquals("suihan74", account.username)
         }
     }
 }

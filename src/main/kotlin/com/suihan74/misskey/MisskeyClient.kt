@@ -1,6 +1,7 @@
 package com.suihan74.misskey
 
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
+import com.suihan74.misskey.api.account.AccountApi
 import com.suihan74.misskey.api.auth.AuthApi
 import com.suihan74.misskey.api.miauth.MiAuthApi
 import com.suihan74.misskey.api.notes.NotesApi
@@ -16,6 +17,7 @@ import retrofit2.Retrofit
 object Misskey {
     private val okHttpClient = OkHttpClient.Builder().build()
 
+    @OptIn(ExperimentalSerializationApi::class)
     private val json = Json { ignoreUnknownKeys = true }
 
     // ------ //
@@ -61,6 +63,11 @@ class AuthorizedMisskeyClient internal constructor(
     tokenDigest: String,
     retrofit: Retrofit
 ) {
+    /**
+     * アカウント関連のAPI
+     */
+    val account: AccountApi = AccountApi(retrofit = retrofit, tokenDigest = tokenDigest)
+
     /**
      * ノート関連のAPI
      */

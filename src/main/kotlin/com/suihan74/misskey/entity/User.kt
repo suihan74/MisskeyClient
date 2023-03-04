@@ -1,8 +1,6 @@
 package com.suihan74.misskey.entity
 
-import com.suihan74.misskey.serializer.InstantISO8601Serializer
 import kotlinx.serialization.Serializable
-import java.time.Instant
 
 /**
  * ユーザー情報
@@ -10,9 +8,6 @@ import java.time.Instant
 @Serializable
 data class User(
     val id: String,
-
-//    @Serializable(with = InstantISO8601Serializer::class)
-//    val createdAt: Instant,
 
     val username: String,
 
@@ -24,5 +19,37 @@ data class User(
 
     val avatarUrl: String,
 
-    val avatarBlurhash: String
-)
+    val avatarBlurhash: String,
+
+    val isBot: Boolean,
+
+    val isCat: Boolean,
+
+    val instance: Instance? = null,
+
+    val emojis: Map<String, String>,
+
+    val badgeRoles: List<BadgeRole>? = null
+) {
+    @Serializable
+    data class Instance(
+        val name: String,
+
+        val softwareName: String,
+
+        val softwareVersion: String,
+
+        val iconUrl: String,
+
+        val faviconUrl: String,
+
+        val themeColor: String?
+    )
+
+    @Serializable
+    data class BadgeRole(
+        val name: String,
+
+        val iconUrl: String
+    )
+}
