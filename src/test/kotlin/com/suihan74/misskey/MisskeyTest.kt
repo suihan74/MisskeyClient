@@ -3,6 +3,7 @@ package com.suihan74.misskey
 import com.suihan74.misskey.entity.Visibility
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Test
+import retrofit2.HttpException
 import kotlin.test.assertEquals
 
 internal class MisskeyTest : TestCredential() {
@@ -58,12 +59,20 @@ internal class MisskeyTest : TestCredential() {
     @Test
     fun post() {
         runBlocking {
-            val client = Misskey.Client(instance = instance, tokenDigest = testTokenDigest)
-            val note = client.notes.create(
-                text = "APIテスト投稿",
-                visibility = Visibility.Specified
-            )
-            println(note.text)
+            runCatching {
+                val client = Misskey.Client(instance = instance, tokenDigest = testTokenDigest)
+                client.notes.create(
+                    text = "APIテスト投稿",
+                    visibility = Visibility.Specified
+                )
+            }.onFailure {
+                it as HttpException
+                val error = it.response()?.errorBody()?.string()
+                println(error)
+                throw it
+            }.onSuccess { note ->
+                println(note.text)
+            }
         }
     }
 

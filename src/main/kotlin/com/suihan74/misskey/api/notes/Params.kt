@@ -33,6 +33,27 @@ data class Poll(
  * 投稿パラメータ
  */
 @Serializable
+data class CreateParamsWithFileIds(
+    val i: String,
+    val visibility: Visibility,
+    val visibleUserIds: List<String>,
+    val text: String?,
+    val cw: String?,
+    val localOnly: Boolean,
+    val noExtractMentions: Boolean,
+    val noExtractHashtags: Boolean,
+    val noExtractEmojis: Boolean,
+    val fileIds: List<String>,
+    val replyId: String?,
+    val renoteId: String?,
+    val channelId: String?,
+    val poll: Poll?
+)
+
+/**
+ * 投稿パラメータ
+ */
+@Serializable
 data class CreateParams(
     val i: String,
     val visibility: Visibility,
@@ -43,7 +64,6 @@ data class CreateParams(
     val noExtractMentions: Boolean,
     val noExtractHashtags: Boolean,
     val noExtractEmojis: Boolean,
-    val fileIds: List<String>?,
     val replyId: String?,
     val renoteId: String?,
     val channelId: String?,

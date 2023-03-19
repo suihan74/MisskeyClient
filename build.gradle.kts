@@ -59,7 +59,7 @@ publishing {
         create<MavenPublication>("maven") {
             groupId = "com.suihan74.misskey"
             artifactId = "misskeyclient-kotlin"
-            version = "0.0.4"
+            version = "0.0.7"
             from(components["kotlin"])
         }
     }
