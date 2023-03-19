@@ -12,6 +12,10 @@ import retrofit2.http.POST
 interface NotesApiImpl {
     @POST("api/notes/create")
     suspend fun create(@Body body: CreateParams) : CreateNoteResponse
+
+    @POST("api/notes/create")
+    suspend fun create(@Body body: CreateParamsWithFileIds) : CreateNoteResponse
+
 }
 
 // ------ //
@@ -53,6 +57,88 @@ class NotesApi internal constructor(
         channelId: String? = null,
         poll: Poll? = null
     ) : Note {
+        return fileIds?.let {
+            createWithFileIds(
+                visibility = visibility,
+                visibleUserIds = visibleUserIds,
+                text = text,
+                cw = cw,
+                localOnly = localOnly,
+                noExtractMentions = noExtractMentions,
+                noExtractHashtags = noExtractHashtags,
+                noExtractEmojis = noExtractEmojis,
+                fileIds = fileIds,
+                replyId = replyId,
+                renoteId = renoteId,
+                channelId = channelId,
+                poll = poll
+            )
+        } ?: createWithoutFileIds(
+            visibility = visibility,
+            visibleUserIds = visibleUserIds,
+            text = text,
+            cw = cw,
+            localOnly = localOnly,
+            noExtractMentions = noExtractMentions,
+            noExtractHashtags = noExtractHashtags,
+            noExtractEmojis = noExtractEmojis,
+            replyId = replyId,
+            renoteId = renoteId,
+            channelId = channelId,
+            poll = poll
+        )
+    }
+
+    private suspend fun createWithFileIds(
+        visibility: Visibility,
+        visibleUserIds: List<String>,
+        text: String?,
+        cw: String?,
+        localOnly: Boolean,
+        noExtractMentions: Boolean,
+        noExtractHashtags: Boolean,
+        noExtractEmojis: Boolean,
+        fileIds: List<String>,
+        replyId: String?,
+        renoteId: String?,
+        channelId: String?,
+        poll: Poll?
+    ) : Note {
+        val response = api.create(
+            body = CreateParamsWithFileIds(
+                i = tokenDigest,
+                visibility = visibility,
+                visibleUserIds = visibleUserIds,
+                text = text,
+                cw = cw,
+                localOnly = localOnly,
+                noExtractMentions = noExtractMentions,
+                noExtractHashtags = noExtractHashtags,
+                noExtractEmojis = noExtractEmojis,
+                fileIds = fileIds,
+                replyId = replyId,
+                renoteId = renoteId,
+                channelId = channelId,
+                poll = poll
+            )
+        )
+        return response.createdNote
+    }
+
+    private suspend fun createWithoutFileIds(
+        visibility: Visibility,
+        visibleUserIds: List<String>,
+        text: String?,
+        cw: String?,
+        localOnly: Boolean,
+        noExtractMentions: Boolean,
+        noExtractHashtags: Boolean,
+        noExtractEmojis: Boolean,
+        replyId: String?,
+        renoteId: String?,
+        channelId: String?,
+        poll: Poll?
+    ) : Note {
         val response = api.create(
             body = CreateParams(
                 i = tokenDigest,
@@ -64,7 +150,6 @@ class NotesApi internal constructor(
                 noExtractMentions = noExtractMentions,
                 noExtractHashtags = noExtractHashtags,
                 noExtractEmojis = noExtractEmojis,
-                fileIds = fileIds,
                 replyId = replyId,
                 renoteId = renoteId,
                 channelId = channelId,
