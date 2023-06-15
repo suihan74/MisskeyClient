@@ -17,7 +17,6 @@ import retrofit2.Retrofit
 object Misskey {
     private val okHttpClient = OkHttpClient.Builder().build()
 
-    @OptIn(ExperimentalSerializationApi::class)
     private val json = Json { ignoreUnknownKeys = true }
 
     // ------ //

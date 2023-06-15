@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "com.suihan74"
-version = "0.0.4"
+version = "0.0.8"
 
 repositories {
     google()
@@ -59,7 +59,7 @@ publishing {
         create<MavenPublication>("maven") {
             groupId = "com.suihan74.misskey"
             artifactId = "misskeyclient-kotlin"
-            version = "0.0.7"
+            version = "0.0.8"
             from(components["kotlin"])
         }
     }

@@ -148,8 +148,6 @@ data class Account(
 
     val emailNotificationTypes: List<String>, // todo
 
-    val showTimelineReplies: Boolean,
-
     val achievements: List<Achievement>,
 
     val loggedInDays: Int,
