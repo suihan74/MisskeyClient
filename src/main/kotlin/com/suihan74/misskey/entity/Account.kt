@@ -6,159 +6,161 @@ import java.time.Instant
 
 @Serializable
 data class Account(
-    val id: String,
+    val id: String = "",
 
     /**
      * 表示名
      */
-    val name: String,
+    val name: String = "",
 
     /**
      * ユーザーid
      */
-    val username: String,
+    val username: String = "",
 
     /**
      * 自インスタンスの場合null
      */
-    val host: String?,
+    val host: String? = null,
 
-    val avatarUrl: String,
+    val avatarUrl: String = "",
 
-    val avatarBlurhash: String,
+    val avatarBlurhash: String = "",
 
-    val avatarId: String,
+    val avatarId: String = "",
 
-    val bannerUrl: String,
+    val bannerUrl: String = "",
 
-    val bannerBlurhash: String,
+    val bannerBlurhash: String = "",
 
-    val bannerId: String,
+    val bannerId: String = "",
 
-    val isBot: Boolean,
+    val isBot: Boolean = false,
 
-    val isCat: Boolean,
+    val isCat: Boolean = false,
 
-    val emojis: Map<String, String>,
+    val emojis: Map<String, String> = emptyMap(),
 
-    val onlineStatus: String,
+    val onlineStatus: String = "",
 
-    val badgeRoles: List<User.BadgeRole>,
+    val badgeRoles: List<User.BadgeRole> = emptyList(),
 
-    val url: String?,
+    val url: String? = null,
 
-    val uri: String?,
-
-    @Serializable(with = InstantISO8601Serializer::class)
-    val createdAt: Instant,
+    val uri: String? = null,
 
     @Serializable(with = InstantISO8601Serializer::class)
-    val updatedAt: Instant,
+    val createdAt: Instant = Instant.MIN,
 
     @Serializable(with = InstantISO8601Serializer::class)
-    val lastFetchedAt: Instant?,
+    val updatedAt: Instant = Instant.MIN,
 
-    val isLocked: Boolean,
+    @Serializable(with = InstantISO8601Serializer::class)
+    val lastFetchedAt: Instant? = null,
 
-    val isSilenced: Boolean,
+    val isLocked: Boolean = false,
 
-    val isSuspended: Boolean,
+    val isSilenced: Boolean = false,
 
-    val description: String?,
+    val isSuspended: Boolean = false,
 
-    val location: String?,
+    val description: String? = null,
 
-    val birthday: String?,
+    val location: String? = null,
 
-    val lang: String,
+    val birthday: String? = null,
 
-    val fields: List<String>,
+    val lang: String = "",
 
-    val followersCount: Int,
+    val fields: List<String> = emptyList(),
 
-    val followingCount: Int,
+    val followersCount: Int = 0,
 
-    val notesCount: Int,
+    val followingCount: Int = 0,
 
-    val pinnedNoteIds: List<String>,
+    val notesCount: Int = 0,
 
-    val pinnedNotes: List<Note>,
+    val pinnedNoteIds: List<String> = emptyList(),
 
-    val pinnedPageId: String?,
+    val pinnedNotes: List<Note> = emptyList(),
 
-    val pinnedPage: Page?,
+    val pinnedPageId: String? = null,
 
-    val publicReactions: Boolean,
+    val pinnedPage: Page? = null,
 
-    val followingVisibility: Visibility,
+    val publicReactions: Boolean = false,
 
-    val followersVisibility: Visibility,
+    val ffVisibility: Visibility = Visibility.Public,  // removed in 2023.12.x
 
-    val twoFactorEnabled: Boolean,
+    val followingVisibility: Visibility = Visibility.Public,
 
-    val usePasswordLessLogin: Boolean,
+    val followersVisibility: Visibility = Visibility.Public,
 
-    val securityKeys: Boolean,
+    val twoFactorEnabled: Boolean = false,
 
-    val roles: List<Role>,
+    val usePasswordLessLogin: Boolean = false,
 
-    val isModerator: Boolean,
+    val securityKeys: Boolean = false,
 
-    val isAdmin: Boolean,
+    val roles: List<Role> = emptyList(),
 
-    val injectFeaturedNote: Boolean,
+    val isModerator: Boolean = false,
 
-    val receiveAnnouncementEmail: Boolean,
+    val isAdmin: Boolean = false,
 
-    val alwaysMarkNsfw: Boolean,
+    val injectFeaturedNote: Boolean = false,
 
-    val autoSensitive: Boolean,
+    val receiveAnnouncementEmail: Boolean = false,
 
-    val carefulBot: Boolean,
+    val alwaysMarkNsfw: Boolean = false,
 
-    val autoAcceptFollowed: Boolean,
+    val autoSensitive: Boolean = false,
 
-    val noCrawle: Boolean,
+    val carefulBot: Boolean = false,
 
-    val isExplorable: Boolean,
+    val autoAcceptFollowed: Boolean = false,
 
-    val isDeleted: Boolean,
+    val noCrawle: Boolean = false,
 
-    val hideOnlineStatus: Boolean,
+    val isExplorable: Boolean = false,
 
-    val hasUnreadSpecifiedNotes: Boolean,
+    val isDeleted: Boolean = false,
 
-    val hasUnreadMentions: Boolean,
+    val hideOnlineStatus: Boolean = false,
+
+    val hasUnreadSpecifiedNotes: Boolean = false,
+
+    val hasUnreadMentions: Boolean = false,
 
     val hasUnreadMessagingMessage: Boolean? = null,  // removed in v13.9.1
 
-    val hasUnreadAnnouncement: Boolean,
+    val hasUnreadAnnouncement: Boolean = false,
 
-    val hasUnreadAntenna: Boolean,
+    val hasUnreadAntenna: Boolean = false,
 
-    val hasUnreadChannel: Boolean,
+    val hasUnreadChannel: Boolean = false,
 
-    val hasUnreadNotification: Boolean,
+    val hasUnreadNotification: Boolean = false,
 
-    val hasPendingReceivedFollowRequest: Boolean,
+    val hasPendingReceivedFollowRequest: Boolean = false,
 
-    val mutedWords: List<String>,
+    val mutedWords: List<String> = emptyList(),
 
-    val mutedInstances: List<String>,
+    val mutedInstances: List<String> = emptyList(),
 
-    val mutingNotificationTypes: List<String>,
+    val mutingNotificationTypes: List<String> = emptyList(),
 
-    val emailNotificationTypes: List<String>, // todo
+    val emailNotificationTypes: List<String> = emptyList(), // todo
 
-    val achievements: List<Achievement>,
+    val achievements: List<Achievement> = emptyList(),
 
-    val loggedInDays: Int,
+    val loggedInDays: Int = 0,
 
     val email: String? = null,
 
     val emailVerified: Boolean = false,
 
-    val policies: Policies,
+    val policies: Policies = Policies(),
 
     val securityKeysList: List<String> = emptyList()
 )

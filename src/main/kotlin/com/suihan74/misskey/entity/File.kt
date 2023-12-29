@@ -6,42 +6,42 @@ import java.time.Instant
 
 @Serializable
 data class File(
-    val id: String,
+    val id: String = "",
 
     @Serializable(with = InstantISO8601Serializer::class)
-    val createdAt: Instant,
+    val createdAt: Instant = Instant.MIN,
 
-    val name: String,
+    val name: String = "",
 
-    val type: String,
+    val type: String = "",
 
-    val md5: String,
+    val md5: String = "",
 
-    val size: Int,
+    val size: Int = 0,
 
-    val isSensitive: Boolean,
+    val isSensitive: Boolean = false,
 
-    val blurhash: String,
+    val blurhash: String = "",
 
-    val properties: Properties,
+    val properties: Properties = Properties(),
 
-    val url: String,
+    val url: String = "",
 
-    val thumbnailUrl: String?,
+    val thumbnailUrl: String? = null,
 
-    val comment: String?,
+    val comment: String? = null,
 
-    val folderId: String?,
+    val folderId: String? = null,
 
-    val folder: String?, // todo
+    val folder: String? = null, // todo
 
-    val userId: String?,
+    val userId: String? = null,
 
-    val user: User?
+    val user: User? = null
 ) {
     @Serializable
     data class Properties(
-        val width: Int,
-        val height: Int
+        val width: Int = 0,
+        val height: Int = 0
     )
 }

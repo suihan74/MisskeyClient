@@ -7,49 +7,49 @@ import kotlinx.serialization.Serializable
  */
 @Serializable
 data class User(
-    val id: String,
+    val id: String = "",
 
-    val username: String,
+    val username: String = "",
 
-    val host: String?,
+    val host: String? = null,
 
-    val name: String,
+    val name: String = "",
 
-    val onlineStatus: String,
+    val onlineStatus: String = "",
 
-    val avatarUrl: String,
+    val avatarUrl: String = "",
 
-    val avatarBlurhash: String,
+    val avatarBlurhash: String = "",
 
-    val isBot: Boolean,
+    val isBot: Boolean = false,
 
-    val isCat: Boolean,
+    val isCat: Boolean = false,
 
     val instance: Instance? = null,
 
-    val emojis: Map<String, String>,
+    val emojis: Map<String, String> = emptyMap(),
 
     val badgeRoles: List<BadgeRole>? = null
 ) {
     @Serializable
     data class Instance(
-        val name: String,
+        val name: String = "",
 
-        val softwareName: String,
+        val softwareName: String = "",
 
-        val softwareVersion: String,
+        val softwareVersion: String = "",
 
-        val iconUrl: String,
+        val iconUrl: String = "",
 
-        val faviconUrl: String,
+        val faviconUrl: String = "",
 
-        val themeColor: String?
+        val themeColor: String? = null
     )
 
     @Serializable
     data class BadgeRole(
-        val name: String,
+        val name: String = "",
 
-        val iconUrl: String
+        val iconUrl: String = ""
     )
 }

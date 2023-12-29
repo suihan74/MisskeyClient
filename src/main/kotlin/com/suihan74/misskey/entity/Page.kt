@@ -6,64 +6,64 @@ import java.time.Instant
 
 @Serializable
 data class Page(
-    val id: String,
+    val id: String = "",
 
     @Serializable(with = InstantISO8601Serializer::class)
-    val createdAt: Instant,
+    val createdAt: Instant = Instant.MIN,
 
     @Serializable(with = InstantISO8601Serializer::class)
-    val updatedAt: Instant,
+    val updatedAt: Instant = Instant.MIN,
 
-    val userId: String,
+    val userId: String = "",
 
-    val user: User,
+    val user: User = User(),
 
-    val content: Content,
+    val content: Content = Content(),
 
-    val variables: List<String>,
+    val variables: List<String> = emptyList(),
 
-    val title: String,
+    val title: String = "",
 
-    val name: String,
+    val name: String = "",
 
-    val summary: String?,
+    val summary: String? = null,
 
-    val hideTitleWhenPinned: Boolean,
+    val hideTitleWhenPinned: Boolean = false,
 
-    val alignCenter: Boolean,
+    val alignCenter: Boolean = false,
 
-    val font: String,
+    val font: String = "",
 
-    val script: String,
+    val script: String = "",
 
-    val eyeCatchingImageId: String?,
+    val eyeCatchingImageId: String? = null,
 
-    val eyeCatchingImage: File?,
+    val eyeCatchingImage: File? = null,
 
-    val attachedFiles: List<File>,
+    val attachedFiles: List<File> = emptyList(),
 
-    val likedCount: Int,
+    val likedCount: Int = 0,
 
-    val isLiked: Boolean
+    val isLiked: Boolean = false
 ) {
     @Serializable
     data class Content(
-        val id: String,
+        val id: String = "",
 
-        val `var`: String?,
+        val `var`: String? = null,
 
-        val text: String?,
+        val text: String? = null,
 
-        val type: String, // todo
+        val type: String = "", // todo
 
-        val event: String,
+        val event: String = "",
 
-        val action: String,
+        val action: String = "",
 
-        val content: String?,
+        val content: String? = null,
 
-        val message: String?,
+        val message: String? = null,
 
-        val primary: Boolean
+        val primary: Boolean = false
     )
 }

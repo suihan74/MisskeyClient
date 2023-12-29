@@ -9,38 +9,38 @@ import java.time.Instant
  */
 @Serializable
 data class Note(
-    val id: String,
+    val id: String = "",
 
     @Serializable(with = InstantISO8601Serializer::class)
-    val createdAt: Instant,
+    val createdAt: Instant = Instant.MIN,
 
-    val userId: String,
+    val userId: String = "",
 
-    val user: User,
+    val user: User = User(),
 
-    val text: String?,
+    val text: String? = null,
 
-    val cw: String?,
+    val cw: String? = null,
 
-    val visibility: Visibility,
+    val visibility: Visibility = Visibility.Public,
 
-    val localOnly: Boolean,
+    val localOnly: Boolean = false,
 
-    val renoteCount: Int,
+    val renoteCount: Int = 0,
 
-    val repliesCount: Int,
+    val repliesCount: Int = 0,
 
-    val reactions: Map<String, Int>,
+    val reactions: Map<String, Int> = emptyMap(),
 
-    val reactionEmojis: Map<String, String>,
+    val reactionEmojis: Map<String, String> = emptyMap(),
 
-    val fileIds: List<String>,
+    val fileIds: List<String> = emptyList(),
 
-    val files: List<File>,
+    val files: List<File> = emptyList(),
 
-    val replyId: String?,
+    val replyId: String? = null,
 
-    val renoteId: String?,
+    val renoteId: String? = null,
 
     val mentions: List<String> = emptyList()
 )

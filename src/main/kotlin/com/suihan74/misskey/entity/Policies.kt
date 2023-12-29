@@ -4,35 +4,35 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class Policies(
-    val gtlAvailable: Boolean,
+    val gtlAvailable: Boolean = false,
 
-    val ltlAvailable: Boolean,
+    val ltlAvailable: Boolean = false,
 
-    val canPublicNote: Boolean,
+    val canPublicNote: Boolean = false,
 
-    val canInvite: Boolean,
+    val canInvite: Boolean = false,
 
-    val canManageCustomEmojis: Boolean,
+    val canManageCustomEmojis: Boolean = false,
 
-    val canHideAds: Boolean,
+    val canHideAds: Boolean = false,
 
-    val driveCapacityMb: Int,
+    val driveCapacityMb: Int = 0,
 
-    val pinLimit: Int,
+    val pinLimit: Int = 0,
 
-    val antennaLimit: Int,
+    val antennaLimit: Int = 0,
 
-    val wordMuteLimit: Int,
+    val wordMuteLimit: Int = 0,
 
-    val webhookLimit: Int,
+    val webhookLimit: Int = 0,
 
-    val clipLimit: Int,
+    val clipLimit: Int = 0,
 
-    val noteEachClipsLimit: Int,
+    val noteEachClipsLimit: Int = 0,
 
-    val userListLimit: Int,
+    val userListLimit: Int = 0,
 
-    val userEachUserListsLimit: Int,
+    val userEachUserListsLimit: Int = 0,
 
-    val rateLimitFactor: Float
+    val rateLimitFactor: Float = 0f
 )

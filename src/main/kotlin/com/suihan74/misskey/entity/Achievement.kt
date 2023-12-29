@@ -6,8 +6,8 @@ import java.time.Instant
 
 @Serializable
 data class Achievement(
-    val name: String,
+    val name: String = "",
 
     @Serializable(with = InstantEpochSecondSerializer::class)
-    val unlockedAt: Instant
+    val unlockedAt: Instant = Instant.MIN
 )
