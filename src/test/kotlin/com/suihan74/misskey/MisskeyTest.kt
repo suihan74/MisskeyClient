@@ -38,7 +38,7 @@ internal class MisskeyTest : TestCredential() {
                     instance = instance,
                     name = "すいはんのーと",
                     description = "@suihan74",
-                    permissions = listOf("write:notes"),
+                    permissions = listOf("write:notes", "read:account"),
                     callbackUrl = "https://localhost/"
                 )
                 println("appSecret: ${appCredential.app.secret}")

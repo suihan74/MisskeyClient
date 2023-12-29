@@ -90,7 +90,9 @@ data class Account(
 
     val publicReactions: Boolean,
 
-    val ffVisibility: Visibility,
+    val followingVisibility: Visibility,
+
+    val followersVisibility: Visibility,
 
     val twoFactorEnabled: Boolean,
 

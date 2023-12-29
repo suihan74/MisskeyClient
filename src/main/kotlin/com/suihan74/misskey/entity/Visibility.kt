@@ -31,7 +31,7 @@ enum class Visibility(val value: String) {
     /**
      * 指定したユーザーのみに公開
      */
-    Specified("specified")
+    Specified("private")
 }
 
 // ------ //
